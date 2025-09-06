@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curry & Chopsticks - Restaurant Website</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+  <!--Login Modal-->
+  <div id="loginModal" class="modal">
+    <div class="modal-content"> <span class="close" aria-label="Close login modal">&times;</span>
+      <h2>Login To Curry & Chopsticks</h2>
+      <form id="loginForm" autocomplete="off">
+        <div class="form-group"> <input type="email" id="email" placeholder="Email" required> <label
+            for="email">Email</label> </div>
+        <div class="form-group"> <input type="password" id="password" placeholder="Password" required> <label
+            for="password">Password</label> </div>
+        <div class="form-group"> <button type="submit" aria-label="Submit login form">Login</button> </div>
+      </form>
+    </div>
+  </div>
+  <!--Reservation Modal-->
+  <div id="reservationModal" class="modal">
+    <div class="modal-content"> <span class="close" aria-label="Close reservation modal">&times;</span>
+      <h2>Make a Reservation</h2>
+      <form id="ReservationForm" autocomplete="off">
+        <div class="form-group"> <input type="text" placeholder="Your name" required> <label>Your name</label> </div>
+        <div class="form-group"> <input type="email" placeholder="Your Email" required> <label>Your Email</label> </div>
+        <div class="form-group"> <input type="tel" placeholder="Phone Number" required> <label>Phone Number</label>
+        </div>
+        <div class="form-group"> <input type="date" required> <label>Date</label> </div>
+        <div class="form-group"> <input type="time" required> <label>Time</label> </div>
+        <div class="form-group"> <select required>
+            <option value="" disabled selected>Select number of guests</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10+">10+</option>
+          </select> <label>Number of Guests</label> </div>
+        <div class="form-group"> <textarea placeholder="Special Request" rows="3"></textarea> <label>Special
+            Requests</label> </div>
+        <div class="form-group"> <button type="submit" aria-label="Submit Reservation form">Make Reservation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--Contact Modal-->
+  <div id="contactModal" class="modal">
+    <div class="modal-content"> <span class="close" aria-label="Close contact modal">&times;</span>
+      <h2>Send us a Message</h2>
+      <form id="contactForm" autocomplete="off">
+        <div class="form-group"> <input type="text" placeholder="Your name" required> <label>Your name</label> </div>
+        <div class="form-group"> <input type="email" placeholder="Your Email" required> <label>Your Email</label> </div>
+        <div class="form-group"> <input type="text" placeholder="Subject" required> <label>Subject</label> </div>
+        <div class="form-group"> <textarea placeholder="Your Message" rows="5"></textarea> <label>Your Message</label>
+        </div>
+        <div class="form-group"> <button type="submit" aria-label="Submit Contact form">Submit Contact Form</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--Favorites Modal-->
+  <div id="favoritesModal" class="modal">
+    <div class="modal-content"> <span class="close" aria-label="Close favorites modal">&times;</span>
+      <h2>Your Favorite Dishes</h2>
+      <div id="favoritesList"> <!--Favorites will be added here--> </div>
+    </div>
+  </div>
+  <!--Cart Sidebar-->
+  <div id="cartSidebar" class="cart-sidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3> <button class="cart-close" aria-label="Close Cart Sidebar"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="cartItems"> <!--Cart Items will be added here--> </div>
+    <div class="cart-total">
+      <h3>Total: ₹<span id="cartTotal">0.00</span></h3> <button class="checkout-btn"
+        aria-label="Proceed To Checkout">Proceed To Checkout</button>
+    </div>
+  </div>
+  <!--Header-->
+  <header class="header">
+    <nav class="navbar"> <a href="#Home" class="logo" aria-label="Curry & Chopsticks Restaurant Home"> <i
+          class="fas fa-utensils"></i> Curry & Chopsticks </a>
+      <ul class="nav-menu">
+        <li><a href="#Home">Home</a></li>
+        <li><a href="#Menu">Menu</a></li>
+        <li><a href="#Reservation">Reservation</a></li>
+        <li><a href="#Contact">Contact</a></li>
+        <li><a href="#About">About us</a></li>
+      </ul>
+      <div class="nav-icons"> <i class="fas fa-search" aria-label="Search"></i> <i class="fas fa-shopping-cart"
+          id="cartIcon" aria-label="View Cart"> <span class="cart-count" id="cartCount">0</span> </i> <i
+          class="fas fa-heart" id="favoritesIcon" aria-label="View Favorites"> <span class="cart-count" id="favoritesCount">0</span> </i> <button class="login-btn" id="loginBtn"
+          aria-label="Open LoginBtn">Login</button> </div>
+      <div class="menu-toggle" id="menuToggle" aria-label="Toggle Menu"> <i class="fas fa-bars"></i> </div>
+    </nav>
+  </header>
+  <!--Hero-Section-->
+  <section id="Home" class="hero">
+    <div class="hero-container">
+      <div class="hero-content fade-in">
+        <div class="welcome-text">Welcome To </div>
+        <h1 class="hero-title"> Curry & Chopsticks<br> Enjoy, <br> <span class="highlight">The Delicious Food</span> </h1>
+        <p class="hero-description"> Experience the best dining with us. Delicious food, cozy atmosphere, and excellent
+          service await you. </p>
+        <div class="hero-buttons"> <a href="#Reservation" class="btn btn-primary" aria-label="Reserve a Table">Reserve a
+            Table</a> <a href="#Menu" class="btn btn-primary" aria-label="Order online">Order online</a> </div>
+        <div class="opening-hours"> <i class="fas fa-clock"> </i> Opening Hours: 10:00 AM - 10:00 PM </div>
+      </div>
+      <div class="hero-image fade-in">
+        <div class="main-dish-container"> <img
+            src="https://i.pinimg.com/1200x/6a/cc/f3/6accf3cefbe7f9779d151e3696018990.jpg"
+            alt="Delicious food on a table" class="main-dish" loading="lazy">
+          <div class="floating-elements">
+            <div class="floating-tomato">🍅</div>
+            <div class="floating-herb">🌿</div>
+            <div class="best-food-badge">Best Food 🍽️</div>
+            <div class="dish-info-card"> <img
+                src="https://i.pinimg.com/1200x/6a/cc/f3/6accf3cefbe7f9779d151e3696018990.jpg" alt="Biryani"
+                loading="lazy">
+              <div class="dish-info">
+                <h4>Hyderabadi Biryani</h4>
+                <div class="stars">★★★★★</div>
+                <p>ROYAL TASTE. ROYAL TRADITION. ROYAL BIRYANI</p> <span class="price">₹299</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Popular Dishes Section-->
+  <section id="Menu" class="Popular-dishes">
+    <div class="section-header fade-in">
+      <h2 class="Section-title">Our Popular <span class="highlight">Dishes</span></h2>
+      <div class="section-nav">
+        <div class="nav-arrow" id="prev-dish" aria-label="Previous dish"> <i class="fas fa-chevron-left"></i> </div>
+        <div class="nav-arrow" id="next-dish" aria-label="Next dish"> <i class="fas fa-chevron-right"></i> </div>
+      </div>
+    </div>
+    <div class="dishes-grid" id="dishes-container">
+      <!-- Dish 1 -->
+      <div class="dish-card fade-in">
+        <div class="dishrating">(5.6k) <i class="fa fa-star"></i></div> <button class="favorite-btn"
+          data-name="Tandoori Chicken"
+          aria-label="Tandoori Chicken - A popular Indian dish made with marinated chicken roasted in a clay oven"> <i
+            class="fas fa-heart"></i> </button> <img
+          src="https://i.pinimg.com/736x/27/88/fd/2788fdeb927d95747176b885dbdfdd84.jpg" alt="Tandoori Chicken"
+          loading="lazy">
+        <h3 class="dish-name">Tandoori Chicken</h3>
+        <div class="dish-price">₹280</div>
+        <p class="dish-description">Classic Indian starter, smoky and spicy from the tandoor.</p> <button
+          class="add-to-cart-btn" data-name="Tandoori Chicken" data-price="₹280"> <i class="fas fa-cart-plus"></i> Add
+          to Cart </button>
+      </div>
+      <!-- Dish 2 -->
+      <div class="dish-card fade-in">
+        <div class="dishrating">(4.2k) <i class="fa fa-star"></i></div> <button class="favorite-btn"
+          data-name="Shawarma" aria-label="Shawarma - Juicy spiced meat wrapped in pita with veggies and sauces"> <i
+            class="fas fa-heart"></i> </button> <img
+          src="https://i.pinimg.com/1200x/f8/c3/3a/f8c33a8c569571fc7c964d2157530041.jpg" alt="Shawarma" loading="lazy">
+        <h3 class="dish-name">Shawarma</h3>
+        <div class="dish-price">₹160</div>
+        <p class="dish-description">A flavorful street-style roll packed with bold spices and freshness.</p> <button
+          class="add-to-cart-btn" data-name="Shawarma" data-price="₹160"> <i class="fas fa-cart-plus"></i> Add to Cart
+        </button>
+      </div>
+      <!-- Dish 3 -->
+      <div class="dish-card fade-in">
+        <div class="dishrating">(3.9k) <i class="fa fa-star"></i></div> <button class="favorite-btn"
+          data-name="Fish Fry" aria-label="Fish Fry - Crispy fried fish marinated in Indian spices"> <i
+            class="fas fa-heart"></i> </button> <img
+          src="https://i.pinimg.com/736x/b0/a0/de/b0a0de527832a0e2cc6d57bfdcf09808.jpg" alt="Fish Fry" loading="lazy">
+        <h3 class="dish-name">Fish Fry</h3>
+        <div class="dish-price">₹280</div>
+        <p class="dish-description">Fresh fish marinated in spices, coated lightly, and shallow or deep-fried to a
+          crispy golden perfection.</p> <button class="add-to-cart-btn" data-name="Fish Fry" data-price="₹280"> <i
+            class="fas fa-cart-plus"></i> Add to Cart </button>
+      </div>
+    </div>
+  </section>
+  <!--About Section-->
+  <section class="about" id="About">
+    <div class="about-container">
+      <div class="about-content fade-in">
+        <h2>About Our <span class="highlight">Restaurant</span></h2>
+        <p>Welcome to Foodie where culinary excellence meets exceptional service. Since 2015, we have been dedicated to
+          providing our guests with an unforgettable dining experience.</p>
+        <p>Our passionate chefs combine traditional techniques with modern innovation, creating dishes that celebrate
+          both local ingredients and international flavours. Every meal is crafted with precision, care, and a
+          commitment to quality that you can taste in every bite. </p>
+        <p>From intimate dinners to special celebrations, we provide the perfect ambiance for any occasion. Come and
+          discover why food lovers choose Foodie as their favorite dining destination.</p>
+      </div>
+      <div class="about-image fade-in"> <img
+          src="https://i.pinimg.com/736x/3c/ea/04/3cea04f851d3ab84a46cc878d9911820.jpg" alt="About Us Image"
+          loading="lazy"> </div>
+    </div>
+  </section> <!--Services Section-->
+  <section class="services">
+    <div class="container">
+      <h2 class="section-title fade-in" style="text-align: center; margin-bottom: 1rem;">Our <span
+          class="highlight">Services</span></h2>
+      <div class="services-grid">
+        <div class="services-card fade-in">
+          <div class="service-icon"> <i class="fas fa-utensils"></i> </div>
+          <h3>Dine-In</h3>
+          <p>Enjoy a cozy and welcoming atmosphere with exceptional service.</p>
+        </div>
+        <div class="services-card fade-in">
+          <div class="service-icon"> <i class="fas fa-birthday-cake"></i> </div>
+          <h3>Special Events</h3>
+          <p>Host your special occasions with us for an unforgettable experience.</p>
+        </div>
+        <div class="services-card fade-in">
+          <div class="service-icon"> <i class="fas fa-truck"></i> </div>
+          <h3>Delivery</h3>
+          <p>Get your favorite meals delivered straight to your door.</p>
+        </div>
+      </div>
+    </div>
+  </section> <!--Reservation Section-->
+  <section id="Reservation" class="reservation">
+    <div class="reservation-container">
+      <h3 class="reservation-info">Visit Us Today</h3>
+      <div class="contact-item"> <i class="fas fa-map-marker-alt"></i>
+        <div>
+          <h4>Address</h4>
+          <p>123 Spice Street, Foodie Lane, <br> Green Park, New Delhi - 110016, India</p>
+        </div>
+      </div>
+      <div class="contact-item"> <i class="fas fa-phone"></i>
+        <div>
+          <h4>Phone</h4>
+          <p>+91 98765 43210</p>
+        </div>
+      </div> <button class="btn-primary" id="openReservationModal">Make a Reservation</button> <button class="btn-primary" id="openContactModal">Send us a Message</button>
+    </div>
+  </section> <!--Footer-->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Foodie Restaurant</h3>
+        <p>123 Spice Street, Foodie Lane, New Delhi</p>
+        <div class="social-icons"> <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> <a href="#"
+            aria-label="Twitter"><i class="fab fa-twitter"></i></a> <a href="#" aria-label="Instagram"><i
+              class="fab fa-instagram"></i></a> </div>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#Home" aria-label="Navigate to Home section">Home</a></li>
+          <li><a href="#Menu" aria-label="Navigate to Menu section">Menu</a></li>
+          <li><a href="#Reservation" aria-label="Navigate to Reservation section">Reservation</a></li>
+          <li><a href="#Contact" aria-label="Navigate to Contact section">Contact</a></li>
+          <li><a href="#About" aria-label="Navigate to About section">About us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Newsletter</h3>
+        <p>Subscribe to our newsletter for the latest updates and offers.</p>
+        <form id="newsletterForm"> <input type="email" placeholder="Your Email" required> <button type="submit"
+            aria-label="Subscribe to Newsletter">Subscribe</button> </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Curry & Chopsticks. All Rights Reserved.</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
